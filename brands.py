@@ -1,9 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+from time import sleep
 
 def get():
     """ Returns all brand with { name, device_count, href } """
     res = requests.get('https://www.gsmarena.com/makers.php3')
+    sleep(3)
     soup = BeautifulSoup(res.text, 'lxml')
     brands = soup.find('div', { 'class': 'st-text' }).find_all('tr')
     

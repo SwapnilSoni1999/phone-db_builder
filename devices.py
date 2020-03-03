@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from time import sleep
 
 DEVICES = list()
 
@@ -26,6 +27,7 @@ def next_page(soup):
 def get(brand: dict):
     """ Returns all scraped devices from brand """
     res = requests.get(brand['href'])
+    sleep(3)
     soup = BeautifulSoup(res.text, 'lxml')
     # do while loop it doesnt have next page
     # means first just do it
@@ -35,6 +37,7 @@ def get(brand: dict):
     while bool(has_next_page):
         # res to next page and go
         res = requests.get('https://gsmarena.com/' + has_next_page['href'])
+        sleep(1)
         scrape_brand(soup)
         next_soup = BeautifulSoup(res.text, 'lxml')
         has_next_page = next_page(next_soup)
