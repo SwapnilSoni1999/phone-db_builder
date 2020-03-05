@@ -18,6 +18,7 @@ def get():
             total_devices = td.find('span').text.split(' ')[0]
             span = td.find('span')
             span.decompose()
+            print(td.text)
             payload.append({
                 'name': td.text,
                 'device_count': int(total_devices),
