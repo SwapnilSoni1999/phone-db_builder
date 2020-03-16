@@ -27,6 +27,7 @@ def next_page(soup):
 
 def get(brand: dict):
     """ Returns all scraped devices from brand """
+    DEVICES.clear()
     res = requests.get(brand['href'])
     print("Brand:", brand['name'])
     sleep(3)
